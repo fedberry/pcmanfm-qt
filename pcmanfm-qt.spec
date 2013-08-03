@@ -1,6 +1,6 @@
 Name:			pcmanfm-qt
 Version:		0.1.0
-Release:		3%{?dist}
+Release:		4%{?dist}
 Summary:		Qt port of the LXDE file manager PCManFM
 
 License:		GPLv2+
@@ -105,6 +105,9 @@ update-desktop-database &> /dev/null || :
 %{_includedir}/libfm-qt/
 
 %changelog
+* Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.1.0-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
+
 * Mon Apr  8 2013 Mamoru TASAKA <mtasaka@fedoraproject.org> - 0.1.0-3
 - Use -DCMAKE_BUILD_TYPE=Release option for cmake
 
