@@ -1,11 +1,13 @@
 Name:			pcmanfm-qt
 Version:		0.1.0
-Release:		4%{?dist}
+Release:		4.100%{?dist}
 Summary:		Qt port of the LXDE file manager PCManFM
 
 License:		GPLv2+
 URL:			http://pcmanfm.sourceforge.net/
 Source0:		http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}-Source.tar.bz2
+# https://github.com/lxde/pcmanfm-qt/commit/b467d4f96bd1d5525f59186551196fd5964c56b8.patch
+Patch0:		pcmanfm-qt-0.1.0-libfm120-icontheme.patch
 
 BuildRequires:	cmake
 BuildRequires:	desktop-file-utils
@@ -35,6 +37,7 @@ developing applications that use libfm-qt.
 
 %prep
 %setup -q -n %{name}-%{version}-Source
+%patch0 -p1 -b .libfm120
 
 # Honor %%optflags
 sed -i.flags \
@@ -105,6 +108,9 @@ update-desktop-database &> /dev/null || :
 %{_includedir}/libfm-qt/
 
 %changelog
+* Thu Feb 11 2014 Mamoru TASAKA <mtasaka@fedoraproject.org> - 0.1.0-5
+- Apply git patch for libfm API change
+
 * Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.1.0-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
