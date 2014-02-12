@@ -1,6 +1,6 @@
 Name:			pcmanfm-qt
 Version:		0.1.0
-Release:		4.100%{?dist}
+Release:		5%{?dist}
 Summary:		Qt port of the LXDE file manager PCManFM
 
 License:		GPLv2+
