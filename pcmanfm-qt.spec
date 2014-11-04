@@ -1,20 +1,24 @@
 Name:			pcmanfm-qt
-Version:		0.1.0
-Release:		7%{?dist}
+Version:		0.8.0
+Release:		1%{?dist}
 Summary:		Qt port of the LXDE file manager PCManFM
 
 License:		GPLv2+
-URL:			http://pcmanfm.sourceforge.net/
-Source0:		http://downloads.sourceforge.net/pcmanfm/%{name}-%{version}-Source.tar.bz2
-# https://github.com/lxde/pcmanfm-qt/commit/b467d4f96bd1d5525f59186551196fd5964c56b8.patch
+URL:			https://github.com/lxde/pcmanfm-qt
+# https://github.com/lxde/pcmanfm-qt/archive/%%{version}.tar.gz
+Source0:		%{name}-%{version}.tar.gz
 Patch0:		pcmanfm-qt-0.1.0-libfm120-icontheme.patch
 
 BuildRequires:	cmake
 BuildRequires:	desktop-file-utils
-BuildRequires:	glib2-devel
-BuildRequires:	libfm-devel >= 1.1.0
-BuildRequires:	libX11-devel
-BuildRequires:	qt-devel
+BuildRequires:	pkgconfig(glib-2.0)
+BuildRequires:	pkgconfig(gio-2.0)
+BuildRequires:	pkgconfig(gio-unix-2.0)
+BuildRequires:	pkgconfig(x11)
+BuildRequires:	pkgconfig(QtCore)
+BuildRequires:	pkgconfig(QtGui)
+BuildRequires:	pkgconfig(QtDBus)
+BuildRequires:	pkgconfig(libmenu-cache)
 Requires:		libfm-qt%{?_isa} = %{version}-%{release}
 
 %description
@@ -36,8 +40,7 @@ libfm-qt-devel package contains libraries and header files for
 developing applications that use libfm-qt.
 
 %prep
-%setup -q -n %{name}-%{version}-Source
-%patch0 -p1 -b .libfm120
+%setup -q
 
 # Honor %%optflags
 sed -i.flags \
@@ -70,11 +73,6 @@ do
 	desktop-file-validate $f
 done
 
-#???
-pushd %{buildroot}/%{_libdir}
-ln -sf libfm-qt.so.0{.0.0,}
-popd
-
 %post -n libfm-qt -p /sbin/ldconfig
 %postun -n libfm-qt -p /sbin/ldconfig
 
@@ -93,13 +91,15 @@ update-desktop-database &> /dev/null || :
 %{_datadir}/applications/%{name}*.desktop
 %{_datadir}/%{name}/
 
+%{_mandir}/man1/%{name}.1*
+
 %files	-n libfm-qt
 # Also include same document files
 %doc	AUTHORS
 %doc	COPYING
 %doc	README
 
-%{_libdir}/libfm-qt.so.0*
+%{_libdir}/libfm-qt.so.1*
 %{_datadir}/libfm-qt/
 
 %files	-n libfm-qt-devel
@@ -108,6 +108,9 @@ update-desktop-database &> /dev/null || :
 %{_includedir}/libfm-qt/
 
 %changelog
+* Tue Nov  4 2014 Mamoru TASAKA <mtasaka@fedoraproject.org> - 0.8.0-1
+- 0.8.0
+
 * Sun Aug 17 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.1.0-7
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
 
