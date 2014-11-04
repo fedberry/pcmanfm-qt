@@ -14,7 +14,7 @@ BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(gio-2.0)
 BuildRequires:	pkgconfig(gio-unix-2.0)
 BuildRequires:	pkgconfig(x11)
-BuildRequires:	pkgconfig(libfm)
+BuildRequires:	pkgconfig(libfm) >= 1.2.0
 BuildRequires:	pkgconfig(QtCore)
 BuildRequires:	pkgconfig(QtGui)
 BuildRequires:	pkgconfig(QtDBus)
