@@ -7,7 +7,6 @@ License:		GPLv2+
 URL:			https://github.com/lxde/pcmanfm-qt
 # https://github.com/lxde/pcmanfm-qt/archive/%%{version}.tar.gz
 Source0:		%{name}-%{version}.tar.gz
-Patch0:		pcmanfm-qt-0.1.0-libfm120-icontheme.patch
 
 BuildRequires:	cmake
 BuildRequires:	desktop-file-utils
