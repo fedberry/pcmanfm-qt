@@ -102,6 +102,7 @@ done
 %license COPYING
 %{_libdir}/libfm-qt5.so.2*
 %dir %{_datadir}/libfm-qt
+%dir %{_datadir}/libfm-qt/translations/
 
 %files -n libfm-qt5-devel
 %{_libdir}/libfm-qt5.so
@@ -110,6 +111,9 @@ done
 %{_datadir}/libfm-qt/translations/libfm-qt_template.qm
 
 %changelog
+* Wed Feb 25 2015 Mamoru TASAKA <mtasaka@fedoraproject.org> - 0.9.0-5
+- Fix directory ownership
+
 * Wed Feb 18 2015 Helio Chissini de Castro <helio@kde.org> - 0.9.0-5
 - Fix duplicated files caused for qm template
 
