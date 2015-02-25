@@ -1,275 +1,134 @@
-%if 0%{?fedora} >= 22
-%global	baseqt	qt5
-%else
-%global	baseqt	qt4
-%endif
+Name: pcmanfm-qt
+Version: 0.9.0
+Release: 5%{?dist}
+Summary: LxQt file manager PCManFM
+License: GPLv2+
+URL: http://lxqt.org
+Source0: http://downloads.lxqt.org/lxqt/0.9.0/%{name}-%{version}.tar.xz
 
-Name:			pcmanfm-qt
-Version:		0.8.0
-Release:		2%{?dist}
-Summary:		Qt port of the LXDE file manager PCManFM
+Requires: libfm-qt5%{?_isa} = %{version}-%{release}
+Requires: lxqt-common >= 0.9.0
 
-License:		GPLv2+
-URL:			https://github.com/lxde/pcmanfm-qt
-# https://github.com/lxde/pcmanfm-qt/archive/%%{version}.tar.gz
-Source0:		%{name}-%{version}.tar.gz
+Obsoletes: pcmanfm-qt5 <= 0.9.0
+Obsoletes: pcmanfm-qt4 <= 0.9.0
+Obsoletes: pcmanfm-qt-common <= 0.9.0
 
-BuildRequires:	cmake
-BuildRequires:	desktop-file-utils
-BuildRequires:	pkgconfig(glib-2.0)
-BuildRequires:	pkgconfig(gio-2.0)
-BuildRequires:	pkgconfig(gio-unix-2.0)
-BuildRequires:	pkgconfig(libfm) >= 1.2.0
-BuildRequires:	pkgconfig(libmenu-cache)
-# Qt 4
-BuildRequires:	pkgconfig(x11)
-BuildRequires:	pkgconfig(QtCore)
-BuildRequires:	pkgconfig(QtGui)
-BuildRequires:	pkgconfig(QtDBus)
-# Qt 5
-BuildRequires:	pkgconfig(Qt5Widgets)
-BuildRequires:	pkgconfig(Qt5DBus)
-BuildRequires:	pkgconfig(Qt5X11Extras)
-# Qt5LinguistTools
-BuildRequires:	qt5-qttools-devel
-BuildRequires:	pkgconfig(xcb)
-Requires:		pcmanfm-%{baseqt} = %{version}-%{release}
+BuildRequires: cmake
+BuildRequires: pkgconfig(Qt5Help)
+BuildRequires: pkgconfig(Qt5X11Extras)
+BuildRequires: pkgconfig(x11)
+BuildRequires: pkgconfig(xcb)
+BuildRequires: pkgconfig(glib-2.0)
+BuildRequires: pkgconfig(gio-2.0)
+BuildRequires: pkgconfig(gio-unix-2.0)
+BuildRequires: pkgconfig(libfm)
+BuildRequires: pkgconfig(libmenu-cache)
+BuildRequires: pkgconfig(exiv2)
+BuildRequires: desktop-file-utils
+BuildRequires: doxygen
 
 %description
-PCManFM-Qt is the Qt port of the LXDE file manager PCManFM.
-
-%package	-n pcmanfm-qt-common
-Summary:	Common files for pcmanfm-qt
-BuildArch:	noarch
-
-%description	-n pcmanfm-qt-common
-This package contains common files for pcmanfm-qt.
-
-%package	-n pcmanfm-qt4
-Summary:	Qt 4 based pcmanfm-qt
-Requires:	libfm-qt4%{?_isa} = %{version}-%{release}
-Requires:	pcmanfm-qt-common = %{version}-%{release}
-
-%description	-n pcmanfm-qt4
-This package of pcmanfm-qt is based on Qt 4.
-
-%package	-n pcmanfm-qt5
-Summary:	Qt 5 based pcmanfm-qt5
-Requires:	libfm-qt5%{?_isa} = %{version}-%{release}
-Requires:	pcmanfm-qt-common = %{version}-%{release}
-
-%description	-n pcmanfm-qt5
-This package of pcmanfm-qt is based on Qt 5.
-
-%package	-n libfm-qt-common
-Summary:		Common files for libfm-qt
-BuildArch:		noarch
-
-%description -n libfm-qt-common
-This package contains common files for libfm-qt.
-
-%package	-n libfm-qt-devel-common
-Summary:	Common files for libfm-qt development packages
-BuildArch:	noarch
-
-%description	-n libfm-qt-devel-common
-This package contains common files for libfm-qt development
-packages.
-
-%package	-n	libfm-qt4
-Summary:		Companion library for PCManFM-Qt using Qt 4
-Obsoletes:		libfm-qt < 0.8.0-1.999
-Provides:		libfm-qt = %{version}-%{release}
-Provides:		libfm-qt%{?_isa} = %{version}-%{release}
-Requires:		libfm-qt-common = %{version}-%{release}
-
-%description	-n	libfm-qt4
-Libfm-Qt is a companion library providing components to build 
-desktop file managers. This package uses Qt 4.
-
-%package	-n	libfm-qt4-devel
-Summary:		Development files for libfm-qt using Qt 4
-Requires:		libfm-qt%{?_isa} = %{version}-%{release}
-Requires:		libfm-qt-devel-common = %{version}-%{release}
-Obsoletes:		libfm-qt-devel < 0.8.0-1.999
-Provides:		libfm-qt-devel = %{version}-%{release}
-Provides:		libfm-qt-devel%{?_isa} = %{version}-%{release}
-
-%description	-n libfm-qt4-devel
-libfm-qt4-devel package contains libraries and header files for
-developing applications that use libfm-qt. This package uses Qt 4.
-Requires:		libfm-qt-devel-common = %{version}-%{release}
-
+%{summary}
 
 %package	-n	libfm-qt5
-Summary:		Companion library for PCManFM-Qt using Qt 5
-Requires:		libfm-qt-common = %{version}-%{release}
+Summary:		Companion library for PCManFM
+Obsoletes:		libfm-qt4 <= 0.9.0
+Obsoletes:		libfm-qt-common <= 0.9.0
+Obsoletes:		libfm-qt <= 0.9.0
 
 %description	-n	libfm-qt5
 Libfm-Qt is a companion library providing components to build 
-desktop file managers. This package uses Qt 5.
+desktop file managers.
 
 %package	-n	libfm-qt5-devel
-Summary:		Development files for libfm-qt using Qt 5
+Summary:		Development files for libfm-qt
 Requires:		libfm-qt5%{?_isa} = %{version}-%{release}
-Requires:		libfm-qt-devel-common = %{version}-%{release}
+Obsoletes:		libfm-qt-devel <= 0.9.0
+Obsoletes:		libfm-qt4-devel <= 0.9.0
+Obsoletes:		libfm-qt-devel-common <= 0.9.0
 
 %description	-n libfm-qt5-devel
-libfm-qt5-devel package contains libraries and header files for
-developing applications that use libfm-qt. This package uses Qt 5.
+libfm-qt-devel package contains libraries and header files for
+developing applications that use libfm-qt.
 
+%post
+/usr/bin/update-desktop-database &> /dev/null || :
 
+%postun
+/usr/bin/update-desktop-database &> /dev/null || :
+
+%post -n libfm-qt5 -p /sbin/ldconfig
+
+%postun -n libfm-qt5 -p /sbin/ldconfig
 
 %prep
 %setup -q
 
-# Honor %%optflags
-sed -i.flags \
-	-e '\@CMAKE_CXX_FLAGS@s|")| %{optflags} ")|' \
-	CMakeLists.txt
-
-# library installation directory
-sed -i.lib \
-	-e '\@LIBRARY DESTINATION@s|lib|%{_lib}|' \
-	-e '\@DESTINATION@s|lib/pkgconfig|%{_lib}/pkgconfig|' \
-	libfm-qt/CMakeLists.txt
-
 %build
-TOPDIR=$(pwd)
-INSTDIR=$TOPDIR/TMPINSTDIR
-
-mkdir qt4 qt5
-
-pushd qt4
-%cmake .. -DCMAKE_BUILD_TYPE=Release
+mkdir -p %{_target_platform}
+pushd %{_target_platform}
+	%cmake -DBUILD_DOCUMENTATION=ON ..
 popd
 
-pushd qt5
-{
- export USE_QT5=1
- %cmake .. -DCMAKE_BUILD_TYPE=Release
-}
-popd
-
-# Kill -O3
-for dir in \
-	qt4 qt5
-do
-	pushd $dir
-	find . \( \
-		-name CMakeCache.txt \
-		-or -name \*.make \
-		-or -name link.txt \
-		\) \
-		-print0 | xargs --null sed -i.opt -e 's|-O3||'
-	make %{?_smp_mflags}
-
-	make install \
-		DESTDIR=$INSTDIR \
-		INSTALL="install -p"
-
-	mv $INSTDIR%{_bindir}/pcmanfm-{qt,$dir}
-	mv $INSTDIR%{_mandir}/man1/pcmanfm-{qt,$dir}.1
-	mv $INSTDIR%{_datadir}/applications/pcmanfm-{qt,$dir}.desktop
-	mv $INSTDIR%{_datadir}/applications/pcmanfm-{qt,$dir}-desktop-pref.desktop
-
-	for f in $INSTDIR%{_datadir}/applications/pcmanfm-$dir*.desktop
-	do
-		sed -i \
-			-e "\@Exec=@s|pcmanfm-qt |pcmanfm-${dir} |" \
-			-e "\@Name=@s|PCManFM |PCManFM-${dir} |" \
-				$f
-	done
-
-	popd
-done
+make %{?_smp_mflags} -C %{_target_platform}
 
 %install
-mkdir -p %{buildroot}
-cp -a TMPINSTDIR/* \
-	%{buildroot}
+make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 
-for f in %{buildroot}%{_datadir}/applications/%{name}*.desktop
-do
-	desktop-file-validate $f
+for dfile in pcmanfm-qt-desktop-pref pcmanfm-qt; do
+	desktop-file-edit \
+		--remove-category=LXQt --add-category=X-LXQt \
+		--remove-category=Help --add-category=X-Help \
+		--remove-only-show-in=LXQt --add-only-show-in=X-LXQt \
+		%{buildroot}/%{_datadir}/applications/${dfile}.desktop
 done
 
-ln -sf pcmanfm-%{baseqt} %{buildroot}%{_bindir}/pcmanfm-qt
-ln -sf pcmanfm-%{baseqt}.desktop \
-	%{buildroot}%{_datadir}/applications/pcmanfm-qt.desktop
-ln -sf pcmanfm-%{baseqt}-desktop-pref.desktop \
-	%{buildroot}%{_datadir}/applications/pcmanfm-qt-desktop-pref.desktop
-# Careful!!
-ln -sf pcmanfm-%{baseqt}.1.gz %{buildroot}%{_mandir}/man1/pcmanfm-qt.1.gz
+%find_lang %{name} --with-qt
+%find_lang libfm-qt --with-qt
 
-%post -n libfm-qt4 -p /sbin/ldconfig
-%postun -n libfm-qt4 -p /sbin/ldconfig
-%post -n libfm-qt5 -p /sbin/ldconfig
-%postun -n libfm-qt5 -p /sbin/ldconfig
-
-%post -n pcmanfm-qt4
-update-desktop-database &> /dev/null || :
-
-%postun -n pcmanfm-qt4
-update-desktop-database &> /dev/null || :
-
-%post -n pcmanfm-qt5
-update-desktop-database &> /dev/null || :
-
-%postun -n pcmanfm-qt5
-update-desktop-database &> /dev/null || :
-
-
-%files -n pcmanfm-qt-common
-%doc	AUTHORS
-%doc	COPYING
-%doc	README
-%{_datadir}/%{name}/
-
-%files
+%files -f %{name}.lang
+%doc AUTHORS README
+%license COPYING
 %{_bindir}/pcmanfm-qt
-%{_datadir}/applications/pcmanfm-qt.desktop
-%{_datadir}/applications/pcmanfm-qt-desktop-pref.desktop
-%{_mandir}/man1/pcmanfm-qt.1*
+%{_datadir}/applications/%{name}.desktop
+%{_datadir}/applications/%{name}-desktop-pref.desktop
+%{_mandir}/man1/pcmanfm-qt.*
+%dir %{_datadir}/%{name}
+%dir %{_datadir}/%{name}/translations
+%{_datadir}/%{name}/translations/pcmanfm-qt_template.qm
 
-%files	-n pcmanfm-qt4
-%{_bindir}/pcmanfm-qt4
-%{_datadir}/applications/pcmanfm-qt4.desktop
-%{_datadir}/applications/pcmanfm-qt4-desktop-pref.desktop
-%{_mandir}/man1/pcmanfm-qt4.1*
+%files -n libfm-qt5 -f libfm-qt.lang
+%doc AUTHORS README
+%license COPYING
+%{_libdir}/libfm-qt5.so.2*
+%dir %{_datadir}/libfm-qt
 
-%files	-n pcmanfm-qt5
-%{_bindir}/pcmanfm-qt5
-%{_datadir}/applications/pcmanfm-qt5.desktop
-%{_datadir}/applications/pcmanfm-qt5-desktop-pref.desktop
-%{_mandir}/man1/pcmanfm-qt5.1*
-
-%files	-n libfm-qt4
-%{_libdir}/libfm-qt.so.1*
-
-%files	-n libfm-qt5
-%{_libdir}/libfm-qt5.so.1*
-
-%files	-n libfm-qt4-devel
-%{_libdir}/libfm-qt.so
-%{_libdir}/pkgconfig/libfm-qt.pc
-
-%files	-n libfm-qt5-devel
+%files -n libfm-qt5-devel
 %{_libdir}/libfm-qt5.so
 %{_libdir}/pkgconfig/libfm-qt5.pc
-
-%files	-n libfm-qt-common
-# Also include same document files
-%doc	AUTHORS
-%doc	COPYING
-%doc	README
-%{_datadir}/libfm-qt/
-
-%files	-n libfm-qt-devel-common
 %{_includedir}/libfm-qt/
-
+%{_datadir}/libfm-qt/translations/libfm-qt_template.qm
 
 %changelog
+* Wed Feb 18 2015 Helio Chissini de Castro <helio@kde.org> - 0.9.0-5
+- Fix duplicated files caused for qm template
+
+* Fri Feb 13 2015 Helio Chissini de Castro <helio@kde.org> - 0.9.0-4
+- Ownership of share/pcmanfm-qt directories
+- libfm-qt5 alnguage files added
+- Obsoletes libfm-qt4-devel
+- Moved COPYING to the new tag license
+
+* Mon Feb 09 2015 Helio Chissini de Castro <helio@kde.org> - 0.9.0-2
+- Fixed download dir
+
+* Sun Feb 08 2015 Helio Chissini de Castro <hcastro@redhat.com> - 0.9.0-1
+- New upstream release 0.9.0
+
+* Tue Feb 03 2015 Helio Chissini de Castro <hcastro@redhat.com> - 0.9.0-0.1
+- Preparing for 0.9.0 release
+- Obsoletes pcmanfm-qt5 and pcmanfm-qt-common packages as no more qt4 versions will be done
+
 * Tue Nov  4 2014 Mamoru TASAKA <mtasaka@fedoraproject.org> - 0.8.0-2
 - Support both Qt4 and Qt5, default to Qt5 for F-22
 
@@ -282,7 +141,7 @@ update-desktop-database &> /dev/null || :
 * Fri Jun 06 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.1.0-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
 
-* Thu Feb 11 2014 Mamoru TASAKA <mtasaka@fedoraproject.org> - 0.1.0-5
+* Tue Feb 11 2014 Mamoru TASAKA <mtasaka@fedoraproject.org> - 0.1.0-5
 - Apply git patch for libfm API change
 
 * Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.1.0-4
