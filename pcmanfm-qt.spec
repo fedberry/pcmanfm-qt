@@ -1,6 +1,6 @@
 Name: pcmanfm-qt
 Version: 0.9.0
-Release: 5%{?dist}
+Release: 6%{?dist}
 Summary: LxQt file manager PCManFM
 License: GPLv2+
 URL: http://lxqt.org
@@ -111,7 +111,7 @@ done
 %{_datadir}/libfm-qt/translations/libfm-qt_template.qm
 
 %changelog
-* Wed Feb 25 2015 Mamoru TASAKA <mtasaka@fedoraproject.org> - 0.9.0-5
+* Wed Feb 25 2015 Mamoru TASAKA <mtasaka@fedoraproject.org> - 0.9.0-6
 - Fix directory ownership
 
 * Wed Feb 18 2015 Helio Chissini de Castro <helio@kde.org> - 0.9.0-5
