@@ -1,6 +1,6 @@
 Name: pcmanfm-qt
 Version: 0.9.0
-Release: 6%{?dist}
+Release: 7%{?dist}
 Summary: LxQt file manager PCManFM
 License: GPLv2+
 URL: http://lxqt.org
@@ -9,7 +9,8 @@ Source0: http://downloads.lxqt.org/lxqt/0.9.0/%{name}-%{version}.tar.xz
 Requires: libfm-qt5%{?_isa} = %{version}-%{release}
 Requires: lxqt-common >= 0.9.0
 
-Obsoletes: pcmanfm-qt5 <= 0.9.0
+Obsoletes: pcmanfm-qt5 < 0.9.0
+Provides:  pcmanfm-qt5 = %{version}-%{release}
 Obsoletes: pcmanfm-qt4 <= 0.9.0
 Obsoletes: pcmanfm-qt-common <= 0.9.0
 
@@ -111,6 +112,9 @@ done
 %{_datadir}/libfm-qt/translations/libfm-qt_template.qm
 
 %changelog
+* Wed Mar 04 2015 Helio Chissini de Castro <helio@kde.org> - 0.9.0-7
+- Add provides for pcmanfm-qt5 to avoid older comps lxqt break
+
 * Wed Feb 25 2015 Mamoru TASAKA <mtasaka@fedoraproject.org> - 0.9.0-6
 - Fix directory ownership
 
