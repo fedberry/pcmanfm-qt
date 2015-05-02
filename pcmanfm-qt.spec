@@ -1,6 +1,6 @@
 Name: pcmanfm-qt
 Version: 0.9.0
-Release: 7%{?dist}
+Release: 8%{?dist}
 Summary: LxQt file manager PCManFM
 License: GPLv2+
 URL: http://lxqt.org
@@ -112,6 +112,9 @@ done
 %{_datadir}/libfm-qt/translations/libfm-qt_template.qm
 
 %changelog
+* Sat May 02 2015 Kalev Lember <kalevlember@gmail.com> - 0.9.0-8
+- Rebuilt for GCC 5 C++11 ABI change
+
 * Wed Mar 04 2015 Helio Chissini de Castro <helio@kde.org> - 0.9.0-7
 - Add provides for pcmanfm-qt5 to avoid older comps lxqt break
 
