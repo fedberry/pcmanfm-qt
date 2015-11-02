@@ -1,10 +1,10 @@
 Name: pcmanfm-qt
-Version: 0.9.0
-Release: 10%{?dist}
+Version: 0.10.0
+Release: 1%{?dist}
 Summary: LxQt file manager PCManFM
 License: GPLv2+
 URL: http://lxqt.org
-Source0: http://downloads.lxqt.org/lxqt/0.9.0/%{name}-%{version}.tar.xz
+Source0: http://downloads.lxqt.org/lxqt/%{version}/%{name}-%{version}.tar.xz
 
 Requires: libfm-qt5%{?_isa} = %{version}-%{release}
 Requires: lxqt-common >= 0.9.0
@@ -88,19 +88,16 @@ done
 %find_lang libfm-qt --with-qt
 
 %files -f %{name}.lang
-%doc AUTHORS README
-%license COPYING
+%doc AUTHORS
 %{_bindir}/pcmanfm-qt
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/applications/%{name}-desktop-pref.desktop
+%{_docdir}/pcmanfm-qt
 %{_mandir}/man1/pcmanfm-qt.*
 %dir %{_datadir}/%{name}
 %dir %{_datadir}/%{name}/translations
-%{_datadir}/%{name}/translations/pcmanfm-qt_template.qm
 
 %files -n libfm-qt5 -f libfm-qt.lang
-%doc AUTHORS README
-%license COPYING
 %{_libdir}/libfm-qt5.so.2*
 %dir %{_datadir}/libfm-qt
 %dir %{_datadir}/libfm-qt/translations/
@@ -109,9 +106,11 @@ done
 %{_libdir}/libfm-qt5.so
 %{_libdir}/pkgconfig/libfm-qt5.pc
 %{_includedir}/libfm-qt/
-%{_datadir}/libfm-qt/translations/libfm-qt_template.qm
 
 %changelog
+* Mon Nov 02 2015 Helio Chissini de Castro <helio@kde.org> - 0.10.0-1
+- New upstream version
+
 * Wed Jun 24 2015 Rex Dieter <rdieter@fedoraproject.org> - 0.9.0-10
 - rebuild (exiv2)
 
