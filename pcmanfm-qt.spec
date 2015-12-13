@@ -1,20 +1,20 @@
 Name: pcmanfm-qt
 Version: 0.10.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: LxQt file manager PCManFM
 License: GPLv2+
 URL: http://lxqt.org
 Source0: http://downloads.lxqt.org/lxqt/%{version}/%{name}-%{version}.tar.xz
 
 Requires: libfm-qt5%{?_isa} = %{version}-%{release}
-Requires: lxqt-common >= 0.9.0
+Requires: lxqt-common >= 0.10.0
 
 Obsoletes: pcmanfm-qt5 < 0.9.0
 Provides:  pcmanfm-qt5 = %{version}-%{release}
 Obsoletes: pcmanfm-qt4 <= 0.9.0
 Obsoletes: pcmanfm-qt-common <= 0.9.0
 
-BuildRequires: cmake
+BuildRequires: pkgconfig(lxqt) >= 0.10.0
 BuildRequires: pkgconfig(Qt5Help)
 BuildRequires: pkgconfig(Qt5X11Extras)
 BuildRequires: pkgconfig(x11)
@@ -68,7 +68,7 @@ developing applications that use libfm-qt.
 %build
 mkdir -p %{_target_platform}
 pushd %{_target_platform}
-	%cmake -DBUILD_DOCUMENTATION=ON ..
+	%{cmake_lxqt} -DBUILD_DOCUMENTATION=ON ..
 popd
 
 make %{?_smp_mflags} -C %{_target_platform}
@@ -108,6 +108,9 @@ done
 %{_includedir}/libfm-qt/
 
 %changelog
+* Sun Dec 13 2015 Helio Chissini de Castro <helio@kde.org> - 0.10.0-2
+- Prepare to use new cmake infra for epel
+
 * Mon Nov 02 2015 Helio Chissini de Castro <helio@kde.org> - 0.10.0-1
 - New upstream version
 
