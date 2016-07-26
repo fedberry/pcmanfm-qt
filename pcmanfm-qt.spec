@@ -1,6 +1,6 @@
 Name: pcmanfm-qt
 Version: 0.10.0
-Release: 3%{?dist}
+Release: 4%{?dist}
 Summary: LxQt file manager PCManFM
 License: GPLv2+
 URL: http://lxqt.org
@@ -80,7 +80,7 @@ for dfile in pcmanfm-qt-desktop-pref pcmanfm-qt; do
 	desktop-file-edit \
 		--remove-category=LXQt --add-category=X-LXQt \
 		--remove-category=Help --add-category=X-Help \
-		--remove-only-show-in=LXQt --add-only-show-in=X-LXQt \
+		--remove-only-show-in=LXQt \
 		%{buildroot}/%{_datadir}/applications/${dfile}.desktop
 done
 
@@ -108,6 +108,10 @@ done
 %{_includedir}/libfm-qt/
 
 %changelog
+* Tue Jul 26 2016 Helio Chissini de Castro <helio@kde.org> - 0.10.0-4
+- Make it available for other desktops
+- Reference https://bugzilla.redhat.com/show_bug.cgi?id=1347905
+
 * Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 0.10.0-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
