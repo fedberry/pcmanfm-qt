@@ -1,6 +1,6 @@
 Name: pcmanfm-qt
 Version: 0.11.3
-Release: 3%{?dist}
+Release: 4%{?dist}
 Summary: LxQt file manager PCManFM
 License: GPLv2+
 URL: http://lxqt.org
@@ -67,6 +67,9 @@ done
 %{_mandir}/man1/pcmanfm-qt.*
 
 %changelog
+* Sat Feb 11 2017 Fedora Release Engineering <releng@fedoraproject.org> - 0.11.3-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
+
 * Thu Jan 19 2017 Christian Dersch <lupinix@mailbox.org> - 0.11.3-3
 - rebuilt
 
