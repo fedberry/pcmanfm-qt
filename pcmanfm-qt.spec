@@ -1,6 +1,6 @@
 Name: pcmanfm-qt
 Version: 0.11.3
-Release: 4%{?dist}
+Release: 5%{?dist}
 Summary: LxQt file manager PCManFM
 License: GPLv2+
 URL: http://lxqt.org
@@ -26,6 +26,10 @@ Obsoletes: pcmanfm-qt5 < 0.9.0
 Provides:  pcmanfm-qt5 = %{version}-%{release}
 Obsoletes: pcmanfm-qt4 <= 0.9.0
 Obsoletes: pcmanfm-qt-common <= 0.9.0
+
+# gvfs is optional depencency at runtime, so we add a weak dependency here
+Recommends:    gvfs
+
 
 %description
 %{summary}
@@ -67,6 +71,9 @@ done
 %{_mandir}/man1/pcmanfm-qt.*
 
 %changelog
+* Sat May 20 2017 Christian Dersch <lupinix@mailbox.org> - 0.11.3-5
+- recommend gvfs
+
 * Sat Feb 11 2017 Fedora Release Engineering <releng@fedoraproject.org> - 0.11.3-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
 
