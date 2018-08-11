@@ -1,12 +1,12 @@
 Name: pcmanfm-qt
-Version: 0.11.3
-Release: 9%{?dist}
+Version: 0.13.0
+Release: 1%{?dist}
 Summary: LxQt file manager PCManFM
 License: GPLv2+
 URL: http://lxqt.org
 Source0: https://github.com/lxde/%{name}/releases/download/%{version}/%{name}-%{version}.tar.xz
 BuildRequires: %{?fedora:cmake}%{!?fedora:cmake3} >= 3.0
-BuildRequires: pkgconfig(lxqt) >= 0.11.0
+BuildRequires: pkgconfig(lxqt) >= 0.13.0
 BuildRequires: pkgconfig(Qt5Help)
 BuildRequires: pkgconfig(Qt5X11Extras)
 BuildRequires: pkgconfig(x11)
@@ -21,7 +21,8 @@ BuildRequires: pkgconfig(libfm-qt)
 BuildRequires: desktop-file-utils
 BuildRequires: kf5-kwindowsystem-devel
 BuildRequires: doxygen
-Requires: lxqt-common >= 0.10.0
+BuildRequires: gcc-c++
+BuildRequires: libexif-devel
 Obsoletes: pcmanfm-qt5 < 0.9.0
 Provides:  pcmanfm-qt5 = %{version}-%{release}
 Obsoletes: pcmanfm-qt4 <= 0.9.0
@@ -69,8 +70,13 @@ done
 %{_datadir}/applications/%{name}-desktop-pref.desktop
 %{_docdir}/pcmanfm-qt
 %{_mandir}/man1/pcmanfm-qt.*
+%{_sysconfdir}/xdg/autostart/lxqt-desktop.desktop
+%{_datadir}/pcmanfm-qt/lxqt/settings.conf
 
 %changelog
+* Fri Aug 03 2018 Zamir SUN <zsun@fedoraproject.org> - 0.13.0-1
+- Update to version 0.13.0
+
 * Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 0.11.3-9
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
