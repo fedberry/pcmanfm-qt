@@ -1,0 +1,39 @@
+From bc265355a6eda27ef8bdb9ad9caa16cc9bb77f18 Mon Sep 17 00:00:00 2001
+From: Zamir SUN <sztsian@gmail.com>
+Date: Sun, 26 Aug 2018 22:30:19 +0800
+Subject: [PATCH] Customize default appearance
+
+Signed-off-by: Zamir SUN <sztsian@gmail.com>
+---
+ config/pcmanfm-qt/lxqt/settings.conf.in | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/config/pcmanfm-qt/lxqt/settings.conf.in b/config/pcmanfm-qt/lxqt/settings.conf.in
+index b7ef002..5cb8934 100644
+--- a/config/pcmanfm-qt/lxqt/settings.conf.in
++++ b/config/pcmanfm-qt/lxqt/settings.conf.in
+@@ -4,8 +4,8 @@ SuCommand=lxqt-sudo %s
+ TerminalCommand=
+ Archiver=file-roller
+ SIUnit=false
+-TerminalDirCommand=xterm
+-TerminalExecCommand=xterm -e %s
++TerminalDirCommand=qterminal
++TerminalExecCommand=qterminal -e %s
+ 
+ [Behavior]
+ BookmarkOpenMethod=0
+@@ -15,7 +15,9 @@ ConfirmDelete=true
+ 
+ [Desktop]
+ WallpaperMode=stretch
+-Wallpaper=@LXQT_SHARE_DIR@/themes/frost/lxqt-origami-light.png
++Wallpaper=/usr/share/backgrounds/default.png
++WallpaperDirectory=
++WallpaperRandomize=false
+ BgColor=#000000
+ FgColor=#ffffff
+ ShadowColor=#000000
+-- 
+2.17.1
+

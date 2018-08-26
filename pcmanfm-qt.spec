@@ -1,10 +1,11 @@
 Name: pcmanfm-qt
 Version: 0.13.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: LxQt file manager PCManFM
 License: GPLv2+
 URL: http://lxqt.org
 Source0: https://github.com/lxde/%{name}/releases/download/%{version}/%{name}-%{version}.tar.xz
+Patch1:  0001-Customize-default-appearance.patch
 BuildRequires: %{?fedora:cmake}%{!?fedora:cmake3} >= 3.0
 BuildRequires: pkgconfig(lxqt) >= 0.13.0
 BuildRequires: pkgconfig(Qt5Help)
@@ -23,6 +24,8 @@ BuildRequires: kf5-kwindowsystem-devel
 BuildRequires: doxygen
 BuildRequires: gcc-c++
 BuildRequires: libexif-devel
+Requires:  qterminal
+Requires:  desktop-backgrounds-compat
 Obsoletes: pcmanfm-qt5 < 0.9.0
 Provides:  pcmanfm-qt5 = %{version}-%{release}
 Obsoletes: pcmanfm-qt4 <= 0.9.0
@@ -43,6 +46,7 @@ Recommends:    gvfs
 
 %prep
 %setup -q
+%patch1 -p1
 
 %build
 mkdir -p %{_target_platform}
@@ -74,6 +78,9 @@ done
 %{_datadir}/pcmanfm-qt/lxqt/settings.conf
 
 %changelog
+* Sun Aug 26 2018 Zamir SUN <zsun@fedoraproject.org> - 0.13.0-2
+- Customize default appearance
+
 * Fri Aug 03 2018 Zamir SUN <zsun@fedoraproject.org> - 0.13.0-1
 - Update to version 0.13.0
 
