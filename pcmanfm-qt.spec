@@ -1,6 +1,6 @@
 Name: pcmanfm-qt
 Version: 0.13.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: LxQt file manager PCManFM
 License: GPLv2+
 URL: http://lxqt.org
@@ -24,7 +24,6 @@ BuildRequires: kf5-kwindowsystem-devel
 BuildRequires: doxygen
 BuildRequires: gcc-c++
 BuildRequires: libexif-devel
-Requires:  qterminal
 Requires:  desktop-backgrounds-compat
 Obsoletes: pcmanfm-qt5 < 0.9.0
 Provides:  pcmanfm-qt5 = %{version}-%{release}
@@ -33,7 +32,8 @@ Obsoletes: pcmanfm-qt-common <= 0.9.0
 
 # gvfs is optional depencency at runtime, so we add a weak dependency here
 Recommends:    gvfs
-
+# configuration patched to use qterminal instead as the default terminal emulator but allow to use others
+Recommends:    qterminal
 
 %description
 %{summary}
@@ -78,6 +78,9 @@ done
 %{_datadir}/pcmanfm-qt/lxqt/settings.conf
 
 %changelog
+* Sat Sep 01 2018 Raphael Groner <projects.rg@smart.ms> - 0.13.0-3
+- allow alternative terminal emulator by weak dependency
+
 * Sun Aug 26 2018 Zamir SUN <zsun@fedoraproject.org> - 0.13.0-2
 - Customize default appearance
 
