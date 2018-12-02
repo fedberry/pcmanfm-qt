@@ -1,6 +1,6 @@
 Name: pcmanfm-qt
 Version: 0.13.0
-Release: 3%{?dist}
+Release: 4%{?dist}
 Summary: LxQt file manager PCManFM
 License: GPLv2+
 URL: http://lxqt.org
@@ -35,18 +35,14 @@ Recommends:    gvfs
 # configuration patched to use qterminal instead as the default terminal emulator but allow to use others
 Recommends:    qterminal
 
+
 %description
 %{summary}
 
-%post
-/usr/bin/update-desktop-database &> /dev/null || :
-
-%postun
-/usr/bin/update-desktop-database &> /dev/null || :
 
 %prep
-%setup -q
-%patch1 -p1
+%autosetup -p1
+
 
 %build
 mkdir -p %{_target_platform}
@@ -56,16 +52,18 @@ popd
 
 make %{?_smp_mflags} -C %{_target_platform}
 
+
 %install
 make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 
-for dfile in pcmanfm-qt-desktop-pref pcmanfm-qt; do
-	desktop-file-edit \
-		--remove-category=LXQt --add-category=X-LXQt \
-		--remove-category=Help --add-category=X-Help \
-		--remove-only-show-in=LXQt \
-		%{buildroot}/%{_datadir}/applications/${dfile}.desktop
-done
+
+%post
+/usr/bin/update-desktop-database &> /dev/null || :
+
+
+%postun
+/usr/bin/update-desktop-database &> /dev/null || :
+
 
 %files
 %doc AUTHORS
@@ -77,7 +75,11 @@ done
 %{_sysconfdir}/xdg/autostart/lxqt-desktop.desktop
 %{_datadir}/pcmanfm-qt/lxqt/settings.conf
 
+
 %changelog
+* Fri Nov 30 2018 Vaughan <devel at agrez dot net> - 0.13.0-4
+- Drop desktop entry modifications
+
 * Sat Sep 01 2018 Raphael Groner <projects.rg@smart.ms> - 0.13.0-3
 - allow alternative terminal emulator by weak dependency
 
